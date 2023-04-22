@@ -14,7 +14,9 @@ def product_list(request):
         queryset = Product.objects.select_related('collection').all()
         serializer = ProductSerializer(
             queryset, many=True, context={'request': request})
-        return Response(serializer.data)
+        # return Response(serializer.data)
+        print(serializer.data)
+        return render(request, 'core/index.html', {'results': serializer.data})
     elif request.method == 'POST':
         serializer = ProductSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
