@@ -1,15 +1,67 @@
-{% extends "core/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
 
-    <a href='/store/collections'>Wróć</a>
-      <div class='product-card'>
-        <h3>Title: {{ result.title }}</h3>
-        <p>Products count: {{ result.products_count }}</p>
-        <form action="/store/collections/delete/{{result.id}}/" method="post">
-            {% csrf_token %}
-            <input type="submit" value="Delete collection">
-        </form>
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="/">
+        <img src="{% static 'core/small-shop.svg' %}" height=34px alt="shop-icon">
+      </a>
+      <p> Sklep internetowy</p>
+    </div>
+
+
+    <div class="shop-buttons">
+      <div class="store">
+        <a href="/store">
+          <p> Do sklepu</p>
+        </a>
       </div>
 
-{% endblock %}
+      <div class="about">
+        <a href="/project">
+          <p> O projekcie</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+    <div class="content">
+      
+    <a href='/store/collections'><button class="content-button">Wróć</button></a>
+
+      <div class="card">
+        <img src="{% static 'core/product.png' %}" alt="Denim Jeans" style="width:100%">
+        <h1>Nazwa: {{ result.title }}</h3>
+        <p>Ilość produktów: {{ result.products_count }}</p>
+        <form action="/store/collections/delete/{{result.id}}/" method="post">
+            {% csrf_token %}
+            <button type="submit" value="Delete product"> Usuń kolekcję</button>
+        </form>
+      </div>
+  </div>
+
+  <div class="footer">
+
+    <hr class="rounded">
+    <div class="footer-content">
+      <img src="{% static 'core/pw_logo.svg' %}" height=70px alt="pw-logo">
+      <p>Projekt wykonany na przedmiot architektury i technologie systemow internetowych</p>
+      <p>Bartłomiej Starzyk - 324169</p>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

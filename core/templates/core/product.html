@@ -43,11 +43,11 @@
     <div class="card">
       <img src="{% static 'core/product.png' %}" alt="Denim Jeans" style="width:100%">
       <h1>Title: {{ result.title }}</h1>
-      <p>Description: {{ result.description }}</p>
-        <p>Inventory: {{ result.inventory }}</p>
-        <p>Price: {{ result.unit_price }}</p>
-        <p>Price with tax: {{ resulat.price_with_tax }}</p>
-        <a href="/store/collections/{{ result.collection }}"><p>Collection id: {{ result.collection }}</p></a>
+      <p>Opis: {{ result.description }}</p>
+        <p>Ilość: {{ result.inventory }}</p>
+        <p>Cena: {{ result.unit_price }}</p>
+        <p>Cena z podatkiem: {{ resulat.price_with_tax }}</p>
+        <a href="/store/collections/{{ result.collection }}"><p>Id kolekcji: {{ result.collection }}</p></a>
         <form action="/store/products/delete/{{result.id}}/" method="post">
             {% csrf_token %}
             <button type="submit" value="Delete product"> Usuń produkt</button>

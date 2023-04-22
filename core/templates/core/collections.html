@@ -1,31 +1,85 @@
-{% extends "core/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-    <a href='/store'>Wróć</a>
-    <table class='collections'>
-      <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Products count</th>
-      </tr>
-{% for result in results %}
-      <tr>
-        <td><a href="/store/collections/{{ result.id }}">{{ result.id }}</a></td>
-        <td>{{ result.title }}</td>
-        <td>{{ result.products_count }}</td>
-      </tr>
-{% endfor %}
-</table>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
 
-<form action="/store/collections/" method="POST">
-{% csrf_token %}
-  <div>
-    <label for="title">Title</label>
-    <input name="title" type="text" id="title" value="" />
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="/">
+        <img src="{% static 'core/small-shop.svg' %}" height=34px alt="shop-icon">
+      </a>
+      <p> Sklep internetowy</p>
+    </div>
+
+
+    <div class="shop-buttons">
+      <div class="store">
+        <a href="/store">
+          <p> Do sklepu</p>
+        </a>
+      </div>
+
+      <div class="about">
+        <a href="/project">
+          <p> O projekcie</p>
+        </a>
+      </div>
+    </div>
   </div>
-  <div>
-    <button>Dodaj</button>
-  </div>
-</form>
 
-{% endblock %}
+    <div class="content">
+        <a href='/store'><button class="content-button">Wróć</button></a>
+        <table class='styled-table'>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Products count</th>
+              </tr>
+              </thead>
+        {% for result in results %}
+              <tr>
+                <td><a href="/store/collections/{{ result.id }}">{{ result.id }}</a></td>
+                <td>{{ result.title }}</td>
+                <td>{{ result.products_count }}</td>
+              </tr>
+        {% endfor %}
+        </table>
+
+
+          <div>
+            <form action="/store/collections/" method="POST">
+            {% csrf_token %}
+              <div>
+                <label for="title">Title</label>
+                <input name="title" type="text" id="title" value="" />
+              </div>
+              <div>
+                <button class="content-button">Dodaj</button>
+              </div>
+            </form>
+          </div>
+
+    </div>
+    </div>
+
+  <div class="footer">
+
+    <hr class="rounded">
+    <div class="footer-content">
+      <img src="{% static 'core/pw_logo.svg' %}" height=70px alt="pw-logo">
+      <p>Projekt wykonany na przedmiot architektury i technologie systemow internetowych</p>
+      <p>Bartłomiej Starzyk - 324169</p>
+    </div>
+  </div>
+</body>
+</html>
