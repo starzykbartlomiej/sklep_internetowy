@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+    <a href='/store/products'>Go back</a>
+      <div class='product-card'>
+        <h3>Title: {{ result.title }}</h3>
+        <p>Description: {{ result.description }}</p>
+        <p>Inventory: {{ result.inventory }}</p>
+        <p>Price: {{ result.unit_price }}</p>
+        <p>Price with tax: {{ resulat.price_with_tax }}</p>
+        <a href="/store/collections/{{ result.collection }}"><p>Collection id: {{ result.collection }}</p></a>
+      </div>
+
+{% endblock %}

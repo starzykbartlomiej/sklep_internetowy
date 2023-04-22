@@ -15,8 +15,7 @@ def product_list(request):
         serializer = ProductSerializer(
             queryset, many=True, context={'request': request})
         # return Response(serializer.data)
-        print(serializer.data)
-        return render(request, 'core/index.html', {'results': serializer.data})
+        return render(request, 'core/products.html', {'results': serializer.data})
     elif request.method == 'POST':
         serializer = ProductSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -29,7 +28,8 @@ def product_detail(request, id):
     product = get_object_or_404(Product, pk=id)
     if request.method == 'GET':
         serializer = ProductSerializer(product)
-        return Response(serializer.data)
+        # return Response(serializer.data)
+        return render(request, 'core/product.html', {'result': serializer.data})
     elif request.method == 'PUT':
         serializer = ProductSerializer(product, data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -47,7 +47,8 @@ def collection_list(request):
     if request.method == 'GET':
         queryset = Collection.objects.annotate(products_count=Count('products')).all()
         serializer = CollectionSerializer(queryset, many=True)
-        return Response(serializer.data)
+        # return Response(serializer.data)
+        return render(request, 'core/collections.html', {'results': serializer.data})
     elif request.method == 'POST':
         serializer = CollectionSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -62,7 +63,8 @@ def collection_detail(request, pk):
             products_count=Count('products')), pk=pk)
     if request.method == 'GET':
         serializer = CollectionSerializer(collection)
-        return Response(serializer.data)
+        # return Response(serializer.data)
+        return render(request, 'core/collection.html', {'result': serializer.data})
     elif request.method == 'PUT':
         serializer = CollectionSerializer(collection, data=request.data)
         serializer.is_valid(raise_exception=True)

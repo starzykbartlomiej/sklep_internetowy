@@ -1,0 +1,30 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <table class='collections'>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Products count</th>
+      </tr>
+{% for result in results %}
+      <tr>
+        <td><a href="/store/collections/{{ result.id }}">{{ result.id }}</a></td>
+        <td>{{ result.title }}</td>
+        <td>{{ result.products_count }}</td>
+      </tr>
+{% endfor %}
+</table>
+
+<form action="/store/collections/" method="POST">
+{% csrf_token %}
+  <div>
+    <label for="title">Title</label>
+    <input name="title" type="text" id="title" value="" />
+  </div>
+  <div>
+    <button>Dodaj</button>
+  </div>
+</form>
+
+{% endblock %}

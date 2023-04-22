@@ -1,0 +1,50 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <table class='products'>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Price</th>
+      </tr>
+{% for result in results %}
+      <tr>
+        <td><a href="/store/products/{{ result.id }}">{{ result.id }}</a></td>
+        <td>{{ result.title }}</td>
+        <td>{{ result.unit_price }}</td>
+      </tr>
+{% endfor %}
+</table>
+
+<form action="/store/products/" method="POST">
+{% csrf_token %}
+  <div>
+    <label for="title">Title</label>
+    <input name="title" type="text" id="title" value="" />
+  </div>
+  <div>
+    <label for="slug">Slug</label>
+    <input name="slug" id="slug" type="text" value="" />
+  </div>
+  <div>
+    <label for="description">description</label>
+    <input name="description"  type="text" id="description" value="" />
+  </div>
+  <div>
+    <label for="unit_price">Unit price</label>
+    <input name="unit_price"  type="number" id="unit_price" value="" />
+  </div>
+  <div>
+    <label for="inventory">Inventory</label>
+    <input name="inventory" id="inventory" type="number" value="" />
+  </div>
+  <div>
+    <label for="collection">Collection</label>
+    <input name="collection" id="collection" type="number" value="" />
+  </div>
+  <div>
+    <button>Dodaj</button>
+  </div>
+</form>
+
+{% endblock %}
