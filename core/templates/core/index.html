@@ -1,6 +1,7 @@
 {% extends "core/base.html" %}
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'core/styles.css' %}">
 {% block content %}
-    {% comment %} <img src="{% static 'core/shopping-man.svg' %}" height=200px alt="pw-logo"> {% endcomment %}
-    <p> Naciśnij "Do sklepu" na pasku nawigacyjnym, aby przejść do przeglądania produktów</p>
+        <img src="{% static 'core/shopping-man.svg' %}" alt="pw-logo">
+        <p> Naciśnij "Do sklepu" na pasku nawigacyjnym, aby przejść do przeglądania produktów</p>
 {% endblock %}
