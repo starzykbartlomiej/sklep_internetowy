@@ -1,7 +1,57 @@
-{% extends "core/base.html" %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'core/styles.css' %}">
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="/">
+        <img src="{% static 'core/small-shop.svg' %}" height=34px alt="shop-icon">
+      </a>
+      <p> Sklep internetowy</p>
+    </div>
+
+
+    <div class="shop-buttons">
+      <div class="store">
+        <a href="/store">
+          <p> Do sklepu</p>
+        </a>
+      </div>
+
+      <div class="about">
+        <a href="/project">
+          <p> O projekcie</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+    <div class="content-home">
         <img src="{% static 'core/shopping-man.svg' %}" alt="pw-logo">
         <p> Naciśnij "Do sklepu" na pasku nawigacyjnym, aby przejść do przeglądania produktów</p>
-{% endblock %}
+    </div>
+
+  <div class="footer">
+
+    <hr class="rounded">
+    <div class="footer-content">
+      <img src="{% static 'core/pw_logo.svg' %}" height=70px alt="pw-logo">
+      <p>Projekt wykonany na przedmiot architektury i technologie systemow internetowych</p>
+      <p>Bartłomiej Starzyk - 324169</p>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
