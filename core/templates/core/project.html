@@ -36,20 +36,15 @@
     </div>
   </div>
 
-    <div class="content">
-      
-    <a href='/store/collections'><button class="content-button">Wróć</button></a>
-
-      <div class="card">
-        <img src="{% static 'core/collection.png' %}" alt="Denim Jeans" style="width:100%">
-        <h1>Nazwa: {{ result.title }}</h3>
-        <p>Ilość produktów: {{ result.products_count }}</p>
-        <form action="/store/collections/delete/{{result.id}}/" method="post">
-            {% csrf_token %}
-            <button type="submit" value="Delete product"> Usuń kolekcję</button>
-        </form>
-      </div>
-  </div>
+    <div class="content-project">
+    
+        <p> Aplikacja "Sklep internetowy" została stworzona w celu usprawniena zarządzania składem
+            dostępnych produktów. Pozwala na wprowadzanie do systemu produktów, łączenie ich 
+            w kolekcje oraz ich edytowanie. Dodatkowo każdy produkt moze zostać usunięty.
+            Backend aplikacji został napisany w języku Python (Framework Django). Frontend
+            został stworzony poprzez wykorzystanie HTML oraz CSS. Aplikacja przechowuje dane
+            w bazie danych MySQL</p>
+    </div>
 
   <div class="footer">
 
