@@ -46,7 +46,7 @@
       </tr>
 {% for result in results %}
       <tr>
-        <td>{{ result.id }}</td>
+        <td><a href="/store/products/{{ result.id }}">{{ result.id }}</a></td>
         <td>{{ result.title }}</td>
         <td>{{ result.unit_price }}</td>
       </tr>
