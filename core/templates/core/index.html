@@ -1,9 +1,46 @@
-<html>
-  <body>
-    {% if name %}
-    <h1>Hello {{ name }}</h1>
-    {% else %}
-    <h1>Hello World</h1>
-    {% endif %}
-  </body>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <img src="{% static 'core/small-shop.svg' %}" height=34px alt="shop-icon">
+      <p> Sklep internetowy</p>
+    </div>
+
+    <div class="shop-buttons">
+      <div class="store">
+        <p> Do sklepu</p>
+      </div>
+
+      <div class="about">
+        <p> O projekcie</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <img src="{% static 'core/shopping-man.svg' %}" height=200px alt="pw-logo">
+    <p> Naciśnij "Do sklepu" na pasku nawigacyjnym, aby przejść do przeglądania produktów</p>
+  </div>
+  <div class="footer"> 
+
+    <hr class="rounded">
+    <div class="footer-content">
+      <img src="{% static 'core/pw_logo.svg' %}" height=70px alt="pw-logo">
+      <p>Projekt wykonany na przedmiot architektury i technologie systemow internetowych</p>
+      <p>Bartłomiej Starzyk - 324169</p>
+    </div>
+  </div>
+  
+
+</body>
 </html>
