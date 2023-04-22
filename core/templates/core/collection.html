@@ -6,6 +6,10 @@
       <div class='product-card'>
         <h3>Title: {{ result.title }}</h3>
         <p>Products count: {{ result.products_count }}</p>
+        <form action="/store/collections/delete/{{result.id}}/" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete collection">
+        </form>
       </div>
 
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.db.models.aggregates import Count
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -20,7 +20,8 @@ def product_list(request):
         serializer = ProductSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return render(request, 'core/product.html', {'result': serializer.data})
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -35,11 +36,19 @@ def product_detail(request, id):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
-    elif request.method == 'DELETE':
+    elif request.method == 'DELETE' :
         if product.orderitems.count() > 0:
             return Response({'error': 'Product cannot be deleted because it is associated with an order item.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST'])
+def product_delete(request, id):
+    product = get_object_or_404(Product, pk=id)
+    if product.orderitems.count() > 0:
+            return Response({'error': 'Product cannot be deleted because it is associated with an order item.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    product.delete()
+    return redirect("/store/products")
 
 
 @api_view(['GET', 'POST'])
@@ -53,7 +62,8 @@ def collection_list(request):
         serializer = CollectionSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return render(request, 'core/collection.html', {'result': serializer.data})
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -75,6 +85,16 @@ def collection_detail(request, pk):
             return Response({'error': 'Collection cannot be deleted because it includes one or more products.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
         collection.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST'])
+def collection_delete(request, pk):
+    collection = get_object_or_404(
+        Collection.objects.annotate(
+            products_count=Count('products')), pk=pk)
+    if collection.products.count() > 0:
+            return Response({'error': 'Collection cannot be deleted because it includes one or more products.'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    collection.delete()
+    return redirect("/store/collections")
 
 def test(request):
     return render(request, 'testPage.html')

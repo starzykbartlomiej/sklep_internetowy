@@ -10,6 +10,10 @@
         <p>Price: {{ result.unit_price }}</p>
         <p>Price with tax: {{ resulat.price_with_tax }}</p>
         <a href="/store/collections/{{ result.collection }}"><p>Collection id: {{ result.collection }}</p></a>
+        <form action="/store/products/delete/{{result.id}}/" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete product">
+        </form>
       </div>
 
 {% endblock %}
